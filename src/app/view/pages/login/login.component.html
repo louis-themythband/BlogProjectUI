@@ -1,0 +1,37 @@
+<p-panel>
+	<ng-template pTemplate="header">
+		<a [routerLink]="['/blog']">
+			<span class="pi pi-globe" style="font-size: 24px;color: cornflowerblue;">
+				<span style="color: white; font-weight: bold; font-size: 24px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+					&nbsp;Global Blogger
+				</span>
+			</span>
+		</a>
+	</ng-template>
+</p-panel>
+<p-panel class="displayPanel" style="height: 100%;">
+	<div class="p-grid loginArea">
+		<div class="p-col">
+			User Name
+		</div>
+		<div class="p-col">
+			<input pInputText type="text" [(ngModel)]="login.username" style="background-color: white; color: black;"/>
+		</div>
+	</div>
+	<div class="p-grid loginArea">
+		<div class="p-col">
+			Password
+		</div>
+		<div class="p-col">
+			<input pPassword type="password" [(ngModel)]="login.password" style="background-color: white; color: black;"/>
+		</div>
+	</div>
+	<div class="p-grid loginArea">
+		<div class="p-col-2">
+			<p-button label="Submit" (onClick)="loginEvent()"></p-button>
+		</div>
+	</div>
+	<div class="loginArea">
+		{{this.message}}
+	</div>
+</p-panel>

@@ -1,0 +1,15 @@
+<div *ngFor="let comment of commentList">
+	<ul>
+		<li>
+			<div style="font-size: 18px; color: chocolate; font-weight: bold;">{{comment.commentTitle}}</div>
+			<div style="font-size: 14px; padding-bottom: 8px; font-style: italic; color: yellow;">
+				BY {{comment.commentUser.userName}} ON {{comment.createdDate | date: 'short'}}
+			</div>
+			<div [innerHTML]="comment.commentText" style="padding-bottom: 15px;"></div>
+			<a (click)="addComment(comment.blogId, comment.commentId)" class="fax-button" *ngIf="canComment()">
+				+ Add Comment
+			</a>
+			<app-comments [commentList]="comment.commentsList" *ngIf="comment.commentsList"></app-comments>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,28 @@
+<br/><br/>
+<p-panel>
+	<ng-template pTemplate="header">
+		Comments &nbsp;&nbsp;
+		<a (click)="addComment(blogid, 0)" class="fax-button" *ngIf="canComment()">
+				+ Create New Comment
+			</a>
+	</ng-template>
+	<div *ngFor="let comment of commentList">
+		<ul>
+			<li>
+				<div style="font-size: 18px; color: chocolate; font-weight: bold;">{{comment.commentTitle}}</div>
+				<div style="font-size: 14px; padding-bottom: 10px; font-style: italic; color: yellow;">
+					BY {{comment.commentUser.userName}} ON {{comment.createdDate | date: 'short'}}
+				</div>
+				<div [innerHTML]="comment.commentText"></div>
+				<a (click)="addComment(comment.blogId, comment.commentId)" class="fax-button" *ngIf="canComment()">
+					+ Add Comment
+				</a>
+				<app-comments [commentList]="comment.commentsList" *ngIf="comment.commentsList"></app-comments>
+			</li>
+		</ul>
+	</div>
+	<div *ngIf="commentList.length === 0" style="text-align: center; font-weight: bold; font-size: 24px;">
+		No Comments for this blog
+	</div>
+</p-panel>
+<br/><br/>

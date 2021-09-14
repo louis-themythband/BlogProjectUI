@@ -1,0 +1,29 @@
+<p-splitter [style]="{height: '83%'}" layout="horizontal" [minSizes]="[10,60]" [panelSizes]="[18,82]">
+	<ng-template>
+		<div class="example-table-container">
+			<table mat-table [dataSource]="blogList" class="example-table">
+				<ng-container matColumnDef="title">
+					<th mat-header-cell *matHeaderCellDef style="font-size: 20px;">Blogs [{{blogList.length}}]</th>
+					<td mat-cell *matCellDef="let blog" style="border: 1px solid black; padding-top: 8px;">
+						<a [routerLink]="['/admin/edit/myblogs/', {outlets: {blogArea: ['edit-blog', blog.blogId]}}]" style="font-size: 18px; font-weight: bold;">
+							{{blog.title}}
+						</a>
+						<div style="font-size: 14px;font-style: italic;padding-bottom: 10px;">
+							Published On {{blog.publishedDatetime | date: 'short' }}<br/>[{{blog.visibility}} <span *ngIf="blog.active">ACTIVE</span><span *ngIf="!blog.active">DISABLED</span> {{blog.status}} ]
+						</div>
+					</td>
+				</ng-container>
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+				<!-- Row shown when there is no matching data. -->
+				<tr class="mat-row" *matNoDataRow>
+					<td class="mat-cell" colspan="4">No data matching the filter</td>
+				</tr>
+			</table>
+		</div>
+	</ng-template>
+	<ng-template>
+		<router-outlet name="blogArea"></router-outlet>
+	</ng-template>
+</p-splitter>

@@ -1,0 +1,39 @@
+<p-panel>
+	<div class="p-grid">
+		<div class="p-col">
+			<span class="p-float-label">
+				<input id="float-input" type="text" pInputText [(ngModel)]="blog.title" size="60" maxlength="60"> 
+				<label for="float-input">Title</label>
+			</span>
+		</div>
+		<div class="p-col-2">
+			<span>
+				&nbsp;&nbsp;&nbsp;
+				Visibility <p-dropdown [(ngModel)]="blog.visibility" [options]="visibilities" optionLabel="key" optionValue="value"></p-dropdown>
+			</span>
+		</div>
+		<div class="p-col-2">
+			Can Comment <p-dropdown [options]="commentSecurity" [(ngModel)]="blog.commentSecurity" optionLabel="key" optionValue="value"></p-dropdown>
+		</div>
+		<div class="p-col-4">
+			<p-chips [(ngModel)]="categories" separator="," placeholder="Search Category"></p-chips>
+		</div>
+	</div>
+	<p-editor [(ngModel)]="blog.text" [style]="{'height':'500px', 'width': '100%'}">
+		<ng-template pTemplate="header">
+        	<span class="ql-format-group">
+            <span title="Bold" class="ql-format-button ql-bold"></span>
+            <span class="ql-format-separator"></span>
+            <span title="Italic" class="ql-format-button ql-italic"></span>
+            <span class="ql-format-separator"></span>
+            <span title="Underline" class="ql-format-button ql-underline"></span>
+            <span class="ql-format-separator"></span>
+            <span title="Strikethrough" class="ql-format-button ql-strike"></span>
+        	</span>
+    	</ng-template>
+	</p-editor>
+	<p-menubar>
+		<p-button label="Save Draft" (onClick)="createDraft()"></p-button>&nbsp;&nbsp;
+		<p-button label="Publish" (onClick)="publishNewBlog()"></p-button>
+	</p-menubar>
+</p-panel>

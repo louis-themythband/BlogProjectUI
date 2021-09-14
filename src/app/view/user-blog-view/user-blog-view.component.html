@@ -1,0 +1,52 @@
+<p-panel>
+	<ng-template pTemplate="header">
+		<span class="pi pi-globe" style="font-size: 24px;color: cornflowerblue;">
+			<span style="color: white; font-weight: bold; font-size: 24px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+				&nbsp;<a [routerLink]="['/']">Global Blogger</a>
+			</span>
+		</span>
+		
+	</ng-template>
+	<p-menubar [model]="items">
+		<span class="p-inputgroup">
+			<p-button icon="pi pi-search" (onClick)="search()"></p-button>
+			<input type="text" pInputText [(ngModel)]="searchTerm" size="80">
+			<p-button label="Reset" (onClick)="clear()"></p-button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button pButton label="Logout" icon="pi pi-power-off" class="p-button-sm p-button-info" *ngIf="auth.isAuthenticated" (click)="this.logout()"></button>
+			<button pButton label="Login" icon="pi pi-power-off" class="p-button-sm p-button-info" *ngIf="!auth.isAuthenticated" (click)="this.login()"></button>
+		</span>
+	</p-menubar>
+</p-panel>
+<p-splitter [style]="{'height': '83%'}" layout="horizontal" [minSizes]="[10,60]" [panelSizes]="[20,80]">
+	<ng-template>
+		<div class="example-table-container">
+			<table #blogList mat-table [dataSource]="dataSource" class="example-table">
+				<ng-container matColumnDef="title">
+					<th mat-header-cell *matHeaderCellDef style="font-size: 20px;">Blogs [{{dataSource.data.length}}]</th>
+					<td mat-cell *matCellDef="let blog" style="border: 1px solid black; padding-top: 8px;">
+						<a [routerLink]="['/user-blog/'+username, {outlets: {blogArea: ['view', blog.blogId]}}]" style="font-size: 18px; font-weight: bold;">
+							{{blog.title}}
+						</a>
+						<div style="font-size: 14px;font-style: italic;padding-bottom: 10px;">
+							By <span style="color: chocolate;font-weight: bold;">{{blog.user.firstName}} {{blog.user.lastName}} 
+							[ <a [routerLink]="['/user-blog/']+blog.user.userName">{{blog.user.userName}}</a> ]</span><br/> 
+							Created On {{blog.createdDatetime | date: 'short' }}
+						</div>
+					</td>
+				</ng-container>
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+				<!-- Row shown when there is no matching data. -->
+				<tr class="mat-row" *matNoDataRow>
+					<td class="mat-cell" colspan="4">No data matching the filter</td>
+				</tr>
+			</table>
+		</div>
+	</ng-template>
+	<ng-template>
+		<router-outlet name="blogArea"></router-outlet>
+	</ng-template>
+</p-splitter>
+

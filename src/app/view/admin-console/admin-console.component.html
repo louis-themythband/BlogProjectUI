@@ -1,0 +1,17 @@
+<p-panel>
+	<ng-template pTemplate="header">
+		<a [routerLink]="['/blog']">
+			<span class="pi pi-globe" style="font-size: 24px;color: cornflowerblue;">
+				<span style="color: white; font-weight: bold; font-size: 24px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+					&nbsp;Global Blogger
+				</span>
+			</span>
+		</a>
+	</ng-template>
+	<p-menubar [model]="items">
+		<button pButton label="Logout" icon="pi pi-power-off" class="p-button-sm p-button-info" *ngIf="auth.isAuthenticated" (click)="this.logout()"></button>
+		<button pButton label="Login" icon="pi pi-power-off" class="p-button-sm p-button-warn" *ngIf="!auth.isAuthenticated" (click)="this.login()"></button>
+	</p-menubar>
+</p-panel>
+<router-outlet></router-outlet>
+

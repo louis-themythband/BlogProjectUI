@@ -1,0 +1,27 @@
+<p-panel header="New Comment">
+	<div class="p-grid">
+		<div class="p-col">
+			<label for="commentTitle">Title</label>&nbsp;<input type="text" pInputText size="80" maxlength="60" [(ngModel)] ="comment.title"/>
+		</div>
+	</div>
+	<div class="p-grid">
+		<div class="p-col">
+			<p-editor [(ngModel)]="comment.text" [style]="{'height':'150px', 'width': '100%'}">
+			<ng-template pTemplate="header">
+				<span class="ql-format-group">
+					<span title="Bold" class="ql-format-button ql-bold"></span>
+					<span class="ql-format-separator"></span>
+					<span title="Italic" class="ql-format-button ql-italic"></span>
+					<span class="ql-format-separator"></span>
+					<span title="Underline" class="ql-format-button ql-underline"></span>
+					<span class="ql-format-separator"></span>
+					<span title="Strikethrough" class="ql-format-button ql-strike"></span>
+				</span>
+			</ng-template>
+		</p-editor>
+		<p-menubar>
+			<p-button label="Publish" (onClick)="publishComment()" tooltipPosition="top"></p-button>
+		</p-menubar>
+		</div>
+	</div>
+</p-panel>

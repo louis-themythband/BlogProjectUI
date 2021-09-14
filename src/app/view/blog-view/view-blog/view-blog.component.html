@@ -1,0 +1,25 @@
+<div style="width: 100%; height: 80%;padding: 10px;">
+	<h1>{{blog.title}} </h1>
+	<div style="font-size: 14px;font-style: italic;padding-bottom: 10px;">
+		By <span style="color: white;">{{blog.user.firstName}} {{blog.user.lastName}} - [ <span style="color: yellow;">{{blog.user.userName}} </span> ] - </span> Created On 
+		{{blog.createdDatetime | date: 'short' }}&nbsp;&nbsp; [ <span style="color: yellow;">{{blog.visibility}}</span> ]
+	</div>
+	
+	<p-dataView [value]="blog.categoryList">
+		<ng-template pTemplate="listItem" let-category>
+			<p-badge severity="info" [value]="category.text"></p-badge>&nbsp;&nbsp;
+		</ng-template>
+	</p-dataView>
+	<div class="p-inputgroup" style="padding-top: 10px;vertical-align: bottom;">
+		<span class="pi pi-thumbs-up likes-button" (click)="like(blog.blogId)" pTooltip="Like this Blog" tooltipPosition="bottom" > {{blog.likes}}</span> 
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="pi pi-thumbs-down dislikes-button" (click)="dislike(blog.blogId)" pTooltip="Dislike this Blog" tooltipPosition="bottom" > {{blog.dislikes}}</span>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<p-rating [(ngModel)]="blog.likes/blog.dislikes" [readonly]="true" [stars]="10" [cancel]="false"></p-rating>
+	</div>
+	<p-scrollPanel [style]="{width: '100%', height: '98%', padding: '15px', border: '3px inset darkGrey', 'background-color': 'white', color: 'black', 'min-width': '1200px'}">
+		<span [innerHTML]="blog.text"></span>
+		<app-comment [blogid]="blog.blogId" [parentCommentId]="0" [commentList]="commentList"></app-comment>
+	</p-scrollPanel>
+	
+</div>

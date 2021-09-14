@@ -1,0 +1,26 @@
+<p-panel>
+	<ng-template pTemplate="header">
+		<a [routerLink]="['/blog']">
+			<span class="pi pi-globe" style="font-size: 24px;color: cornflowerblue;">
+				<span style="color: white; font-weight: bold; font-size: 24px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+					&nbsp;Global Blogger
+				</span>
+			</span>
+		</a>
+	</ng-template>
+	<p-menubar>
+		<button pButton label="Logout" icon="pi pi-power-off" class="p-button-sm p-button-info" *ngIf="auth.isAuthenticated" (click)="logout()"></button>
+		<button pButton label="Login" icon="pi pi-power-off" class="p-button-sm p-button-info" *ngIf="!auth.isAuthenticated" (click)="login()"></button>
+	</p-menubar>
+</p-panel>
+<p-panel>
+	<ng-template pTemplate="header">
+		<div style="width: 100%; text-align: center;">
+			<h1>Page Not Found</h1>
+		</div>
+	</ng-template>
+	<div style="text-align: center; font-weight: bold; font-size: 30px; background-color: blanchedalmond; color: slategrey; height: 600px;">
+		The page you are looking for was not found!!<br/><br/>
+		<a [routerLink]="['/blog']" >Global Blog Home</a>
+	</div>
+</p-panel>

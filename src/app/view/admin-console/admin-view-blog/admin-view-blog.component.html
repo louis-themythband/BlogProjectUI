@@ -1,0 +1,43 @@
+<div style="width: 100%; height: 90%;padding: 10px;">
+	<h3>{{blog.title}} </h3>
+	<div style="font-size: 14px;font-style: italic;padding-bottom: 10px;">
+		By <span style="color: black;">{{blog.user.firstName}} {{blog.user.lastName}}</span> On 
+		{{blog.createdDatetime | date: 'short' }}
+		<span style="Color: green; font-weight: bold;" *ngIf="blog.active === true">
+			&nbsp;&nbsp;Active
+		</span>
+		<span style="Color: red; font-weight: bold;" *ngIf="blog.active === false">
+			&nbsp;&nbsp;Deactivated
+		</span>
+		<span style="font-weight: bold;">
+			&nbsp;&nbsp;Visibility: [{{blog.visibility}}]
+		</span>
+		<span style="font-weight: bold;" [ngSwitch]="blog.commentSecurity">
+			&nbsp;&nbsp;Comment Security: [
+			<span *ngSwitchCase="0">None</span>
+			<span *ngSwitchCase="1">Owner</span>
+			<span *ngSwitchCase="2">Authenticated User</span>
+			<span *ngSwitchCase="4">Anonymus</span>
+			]
+		</span>
+	</div>
+	
+	<p-dataView [value]="blog.categoryList">
+		<ng-template pTemplate="listItem" let-category>
+			<p-badge severity="info" [value]="category.text"></p-badge>&nbsp;&nbsp;
+		</ng-template>
+	</p-dataView>
+	<div style="padding-top: 15px;">
+		<!-- p-rating [(ngModel)]="blog.rating"></p-rating -->
+		<span>
+			<span class="pi pi-thumbs-up likes-button" pTooltip="Like this Blog" tooltipPosition="bottom" > {{blog.likes}}</span> 
+			&nbsp;&nbsp;
+			<span class="pi pi-thumbs-down likes-button" pTooltip="Dislike this Blog" tooltipPosition="bottom" > {{blog.dislikes}}</span>
+		</span>
+	</div>
+	<p-scrollPanel [style]="{width: '1200px', height: '80%', padding: '20px', border: '3px inset darkGrey'}">
+		<div style="width: 100%; height: 99%; background-color: blanchedalmond; margin: 10px; color: black;padding: 10px;">
+			<span [innerHTML]="blog.text"></span>
+		</div>
+	</p-scrollPanel>
+</div>

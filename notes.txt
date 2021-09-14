@@ -1,0 +1,59 @@
+sudo npm install --global npm@6
+npm i -g @angular/cli@latest
+npm install ng-packagr@^11.0.0
+npm install @angular/material
+
+npm install primeicons --save
+npm install primeng --save
+npm install @angular/cdk --save
+npm install primeflex --save
+npm install quill
+npm install zone.js@^0.10.2
+npm install bufferutil
+npm install bootstrap
+npm install jquery
+npm install @popperjs/core
+npm install utf-8-validate
+npm install sass
+npm install ng-packagr
+npm install @angular/localize@^11.0.0
+npm install @fullcalendar/core --save
+npm install @fullcalendar/daygrid --save
+npm install @fullcalendar/timegrid --save
+npm install @fullcalendar/interaction --save
+
+
+sass --watch sass:css
+
+
+
+angular.json
+---------------------------------
+ 				"styles": [
+              "src/styles.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/md-dark-indigo/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/@fullcalendar/common/main.min.css",
+              "node_modules/@fullcalendar/daygrid/main.min.css",
+              "node_modules/@fullcalendar/timegrid/main.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/primeflex/src/_variables.scss",
+				  "node_modules/primeflex/src/_grid.scss",
+				  "node_modules/primeflex/src/_formlayout.scss",
+				  "node_modules/primeflex/src/_display.scss",
+				  "node_modules/primeflex/src/_text.scss",
+				  "node_modules/primeflex/src/flexbox/_flexbox.scss",
+				  "node_modules/primeflex/src/_spacing.scss",
+				  "node_modules/primeflex/src/_elevation.scss",
+				  "node_modules/quill/dist/quill.core.css",
+				  "node_modules/quill/dist/quill.snow.css"
+            ],
+            
+            "scripts": ["../node_modules/quill/dist/quill.js"],
+            
+Status 
+/**
+ * 0 = none 1 = admin * 2 = user * 4 = anonymous
+ */
